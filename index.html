@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORION DEV - Automated Business Solutions</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: #0a0e27;
+            min-height: 100vh;
+            padding: 40px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Animated circuit board background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, rgba(0, 183, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(rgba(0, 183, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        /* Glowing particles effect */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 183, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 157, 0, 0.15) 0%, transparent 50%);
+            animation: pulseGlow 8s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        
+        .container {
+            background: rgba(13, 18, 38, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 2px solid rgba(0, 183, 255, 0.3);
+            box-shadow: 
+                0 0 60px rgba(0, 183, 255, 0.2),
+                0 0 100px rgba(255, 157, 0, 0.1),
+                inset 0 0 60px rgba(0, 183, 255, 0.03);
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 50px;
+            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            z-index: 1;
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
+        }
+        
+        /* Tech corner decorations */
+        .container::before,
+        .container::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 2px solid rgba(0, 183, 255, 0.5);
+        }
+        
+        .container::before {
+            top: -2px;
+            left: -2px;
+            border-right: none;
+            border-bottom: none;
+            border-radius: 24px 0 0 0;
+        }
+        
+        .container::after {
+            bottom: -2px;
+            right: -2px;
+            border-left: none;
+            border-top: none;
+            border-radius: 0 0 24px 0;
+        }
+        
+        /* Premium header */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            position: relative;
+            border-bottom: 2px solid rgba(0, 183, 255, 0.2);
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00b7ff, #ff9d00, transparent);
+            animation: scanLine 3s ease-in-out infinite;
+        }
+        
+        @keyframes scanLine {
+            0%, 100% { transform: translateX(-150%); opacity: 0; }
+            50% { transform: translateX(50%); opacity: 1; }
+        }
+        
+        .header h1 {
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #00b7ff 0%, #00d9ff 50%, #ff9d00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 12px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-shadow: 0 0 40px rgba(0, 183, 255, 0.5);
+            animation: textGlow 2s ease-in-out infinite;
+        }
+        
+        @keyframes textGlow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+        }
+        
+        .header p {
+            color: #00d9ff;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        /* Cyberpunk section titles */
+        .section-title {
+            color: #00b7ff;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 40px 0 24px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            padding-left: 24px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 8px;
+            height: 100%;
+            background: linear-gradient(180deg, #00b7ff 0%, #ff9d00 100%);
+            box-shadow: 0 0 20px rgba(0, 183, 255, 0.8);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        /* Futuristic form groups */
+        .form-group {
+            margin-bottom: 24px;
+        }
+        
+        .form-group label {
+            display: block;
+            color: #00d9ff;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid rgba(0, 183, 255, 0.3);
+            border-radius: 12px;
+            font-size: 15px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Rajdhani', sans-serif;
+            background: rgba(0, 183, 255, 0.05);
+            color: #fff;
+            font-weight: 500;
+        }
+        
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #00b7ff;
+            background: rgba(0, 183, 255, 0.1);
+            box-shadow: 
+                0 0 20px rgba(0, 183, 255, 0.3),
+                inset 0 0 20px rgba(0, 183, 255, 0.1);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        /* Tech product selection */
+        .product-selection {
+            background: rgba(0, 183, 255, 0.05);
+            padding: 32px;
+            border-radius: 16px;
+            border: 2px solid rgba(0, 183, 255, 0.2);
+            margin-bottom: 32px;
+            box-shadow: 
+                0 0 30px rgba(0, 183, 255, 0.1),
+                inset 0 0 30px rgba(0, 183, 255, 0.05);
+        }
+        
+        .product-item-row {
+            display: grid;
+            grid-template-columns: 4fr 2fr 2fr auto;
+            gap: 12px;
+            margin-bottom: 16px;
+            align-items: center;
+            padding: 20px;
+            background: rgba(13, 18, 38, 0.8);
+            border-radius: 12px;
+            border: 2px solid rgba(0, 183, 255, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-item-row::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 183, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .product-item-row:hover::before {
+            left: 100%;
+        }
+        
+        .product-item-row:hover {
+            border-color: #00b7ff;
+            box-shadow: 
+                0 0 30px rgba(0, 183, 255, 0.3),
+                inset 0 0 30px rgba(0, 183, 255, 0.05);
+            transform: translateX(4px);
+        }
+        
+        .product-name-input,
+        .product-price-input,
+        .qty-input {
+            padding: 12px 16px;
+            border: 2px solid rgba(0, 183, 255, 0.3);
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.3s;
+            background: rgba(0, 183, 255, 0.05);
+            color: #fff;
+            font-family: 'Rajdhani', sans-serif;
+        }
+        
+        .product-name-input:focus,
+        .product-price-input:focus,
+        .qty-input:focus {
+            outline: none;
+            border-color: #00b7ff;
+            background: rgba(0, 183, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 183, 255, 0.3);
+        }
+        
+        .qty-input {
+            text-align: center;
+            font-weight: 700;
+            color: #ff9d00;
+        }
+        
+        /* Cyberpunk remove button */
+        .btn-remove {
+            padding: 12px;
+            background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%);
+            color: white;
+            border: 2px solid #ff4444;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 700;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 20px rgba(255, 68, 68, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-remove::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s;
+        }
+        
+        .btn-remove:hover::before {
+            width: 200%;
+            height: 200%;
+        }
+        
+        .btn-remove:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(255, 68, 68, 0.6);
+        }
+        
+        /* Tech add button */
+        .btn-add-more {
+            margin-top: 16px;
+            padding: 16px 32px;
+            background: transparent;
+            color: #00b7ff;
+            border: 2px solid #00b7ff;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 700;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Rajdhani', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 20px rgba(0, 183, 255, 0.2);
+        }
+        
+        .btn-add-more:hover {
+            background: rgba(0, 183, 255, 0.2);
+            color: #fff;
+            border-color: #00d9ff;
+            box-shadow: 0 0 30px rgba(0, 183, 255, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        /* Futuristic cart summary */
+        .cart-summary {
+            background: rgba(0, 183, 255, 0.05);
+            padding: 32px;
+            border-radius: 16px;
+            border: 2px solid rgba(0, 183, 255, 0.3);
+            margin: 32px 0;
+            box-shadow: 
+                0 0 40px rgba(0, 183, 255, 0.2),
+                inset 0 0 40px rgba(0, 183, 255, 0.05);
+            position: relative;
+        }
+        
+        .cart-summary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00b7ff, #ff9d00, transparent);
+            animation: scanLine 3s ease-in-out infinite;
+        }
+        
+        .cart-items {
+            margin-bottom: 24px;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(0, 183, 255, 0.2);
+            color: #fff;
+        }
+        
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 32px;
+            font-weight: 800;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #00b7ff 0%, #ff9d00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            padding-top: 24px;
+            border-top: 2px solid rgba(0, 183, 255, 0.3);
+        }
+        
+        .empty-cart {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.4);
+            padding: 32px;
+            font-weight: 500;
+        }
+        
+        /* Tech signature section */
+        .signature-section {
+            margin: 40px 0;
+            padding: 32px;
+            background: rgba(255, 157, 0, 0.05);
+            border-radius: 16px;
+            border: 2px solid rgba(255, 157, 0, 0.3);
+            box-shadow: 
+                0 0 40px rgba(255, 157, 0, 0.1),
+                inset 0 0 40px rgba(255, 157, 0, 0.05);
+        }
+        
+        .signature-section h3 {
+            color: #ff9d00;
+            margin-bottom: 16px;
+            font-size: 20px;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        #signature-pad {
+            border: 2px solid rgba(255, 157, 0, 0.5);
+            border-radius: 12px;
+            cursor: crosshair;
+            background: rgba(13, 18, 38, 0.8);
+            display: block;
+            width: 100%;
+            height: 280px;
+            touch-action: none;
+            box-shadow: 
+                0 0 30px rgba(255, 157, 0, 0.2),
+                inset 0 0 30px rgba(255, 157, 0, 0.05);
+        }
+        
+        .signature-buttons {
+            margin-top: 16px;
+            display: flex;
+            gap: 12px;
+        }
+        
+        .btn-clear {
+            padding: 12px 24px;
+            background: transparent;
+            color: #ff9d00;
+            border: 2px solid #ff9d00;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 700;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Rajdhani', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-clear:hover {
+            background: rgba(255, 157, 0, 0.2);
+            box-shadow: 0 0 20px rgba(255, 157, 0, 0.5);
+        }
+        
+        /* Cyberpunk submit button */
+        .btn-submit {
+            width: 100%;
+            padding: 24px;
+            background: linear-gradient(135deg, #00b7ff 0%, #00d9ff 50%, #ff9d00 100%);
+            background-size: 200% 100%;
+            color: #0a0e27;
+            border: 2px solid #00b7ff;
+            border-radius: 16px;
+            font-size: 20px;
+            font-weight: 900;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 32px;
+            box-shadow: 
+                0 0 40px rgba(0, 183, 255, 0.5),
+                0 0 80px rgba(255, 157, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .btn-submit::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shine 3s ease-in-out infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 
+                0 0 60px rgba(0, 183, 255, 0.8),
+                0 0 100px rgba(255, 157, 0, 0.5);
+            background-position: 100% 0;
+        }
+        
+        .btn-submit:active {
+            transform: translateY(-2px) scale(1);
+        }
+        
+        .btn-submit:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* Tech status messages */
+        .status-message {
+            margin-top: 24px;
+            padding: 20px 24px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            display: none;
+            animation: slideIn 0.3s ease;
+            border: 2px solid;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .status-message.success {
+            background: rgba(0, 255, 127, 0.1);
+            color: #00ff7f;
+            border-color: #00ff7f;
+            box-shadow: 0 0 30px rgba(0, 255, 127, 0.3);
+            display: block;
+        }
+        
+        .status-message.error {
+            background: rgba(255, 68, 68, 0.1);
+            color: #ff4444;
+            border-color: #ff4444;
+            box-shadow: 0 0 30px rgba(255, 68, 68, 0.3);
+            display: block;
+        }
+        
+        /* Futuristic loading spinner */
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 24px;
+        }
+        
+        .loading.active {
+            display: block;
+        }
+        
+        .spinner {
+            border: 4px solid rgba(0, 183, 255, 0.2);
+            border-top: 4px solid #00b7ff;
+            border-right: 4px solid #ff9d00;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+            box-shadow: 0 0 30px rgba(0, 183, 255, 0.5);
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .required {
+            color: #ff9d00;
+            font-weight: 700;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .container {
+                padding: 32px 24px;
+                border-radius: 16px;
+            }
+            
+            .header h1 {
+                font-size: 32px;
+                letter-spacing: 2px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-selection {
+                padding: 20px;
+            }
+            
+            .product-item-row {
+                grid-template-columns: 1fr 1fr;
+                padding: 16px;
+            }
+
+            .product-name-input {
+                grid-column: 1 / 3;
+            }
+
+            .product-price-input {
+                grid-column: 1 / 2;
+            }
+
+            .qty-input {
+                grid-column: 2 / 3;
+            }
+
+            .btn-remove {
+                grid-column: 1 / 3;
+                margin-top: 8px;
+            }
+            
+            .cart-total {
+                font-size: 24px;
+            }
+        }
+        
+        .product-header {
+            display: grid;
+            grid-template-columns: 3fr 1fr 1fr auto;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-weight: 600;
+            color: #00b7ff;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        @media (max-width: 768px) {
+            .product-header {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚡ ORION DEV</h1>
+            <p>Automatic Payments & Streamlined Operations</p>
+        </div>
+        
+        <form id="order-form">
+            <div class="section-title">👤 Customer Details</div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="name">Full Name <span class="required">*</span></label>
+                    <input type="text" id="name" name="name" required placeholder="Jane Doe">
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number <span class="required">*</span></label>
+                    <input type="tel" id="phone" name="phone" required placeholder="+27 XX XXX XXXX">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address <span class="required">*</span></label>
+                <input type="email" id="email" name="email" required placeholder="jane@example.com">
+            </div>
+            
+            <div class="form-group">
+                <label for="address">Delivery Address <span class="required">*</span></label>
+                <textarea id="address" name="address" required placeholder="123 Main Street, Suburb, City, Postal Code"></textarea>
+            </div>
+            
+            <div class="section-title">🛍️ Enter Order Items</div>
+            
+            <div id="product-selection" class="product-selection">
+                <div class="product-header">
+                    <span>Product Name <span class="required">*</span></span>
+                    <span style="text-align: center;">Price (R) <span class="required">*</span></span>
+                    <span style="text-align: center;">Qty <span class="required">*</span></span>
+                    <span></span>
+                </div>
+                
+                <div id="item-rows-container"></div>
+                
+                <button type="button" class="btn-add-more" onclick="addProductRow()">
+                    ➕ Add Another Item
+                </button>
+            </div>
+            
+            <div class="section-title">🛒 Order Summary</div>
+            
+            <div class="cart-summary">
+                <div id="cart-items" class="cart-items">
+                    <div class="empty-cart">Enter products above to see your order</div>
+                </div>
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cart-total">R0.00</span>
+                </div>
+            </div>
+            
+            <div class="signature-section">
+                <h3>✍️ Your Signature</h3>
+                <p style="color: rgba(255, 157, 0, 0.7); font-size: 14px; margin-bottom: 16px; font-weight: 500;">By signing below, you confirm this order and agree to our terms.</p>
+                <canvas id="signature-pad" width="800" height="280"></canvas>
+                <div class="signature-buttons">
+                    <button type="button" class="btn-clear" onclick="clearSignature()">Clear Signature</button>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn-submit" id="submit-btn">🚀 Place Order & Pay Now</button>
+            
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p style="margin-top: 12px; color: #00b7ff; font-weight: 600; font-family: 'Orbitron', sans-serif;">Processing...</p>
+            </div>
+            
+            <div class="status-message" id="status-message"></div>
+        </form>
+    </div>
+
+    <script>
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbymLNr03LT_-DSoua1TyjJhuUhNrzwM7mByjQyunjMk2hw2CihLIwSiCytAf5TAGC2x/exec';
+        
+        let itemRowCounter = 0;
+        let selectedProducts = {};
+        
+        function initializeForm() {
+            addProductRow();
+            document.getElementById('order-form').style.display = 'block';
+        }
+
+        function addProductRow() {
+            const rowId = `item-${itemRowCounter++}`;
+            const container = document.getElementById('item-rows-container');
+            
+            const productRow = document.createElement('div');
+            productRow.className = 'product-item-row';
+            productRow.id = `row-${rowId}`;
+            
+            const updateHandler = () => updateCart();
+
+            const nameInput = document.createElement('input');
+            nameInput.type = 'text';
+            nameInput.className = 'product-name-input';
+            nameInput.id = `name-${rowId}`;
+            nameInput.required = true;
+            nameInput.placeholder = 'Product Name';
+            nameInput.oninput = updateHandler;
+
+            const priceInput = document.createElement('input');
+            priceInput.type = 'number';
+            priceInput.className = 'product-price-input';
+            priceInput.id = `price-${rowId}`;
+            priceInput.min = 0.01;
+            priceInput.step = 0.01;
+            priceInput.required = true;
+            priceInput.placeholder = '0.00';
+            priceInput.oninput = updateHandler;
+
+            const qtyInput = document.createElement('input');
+            qtyInput.type = 'number';
+            qtyInput.className = 'qty-input';
+            qtyInput.id = `qty-${rowId}`;
+            qtyInput.value = 1;
+            qtyInput.min = 1;
+            qtyInput.max = 99;
+            qtyInput.oninput = updateHandler;
+
+            const removeBtn = document.createElement('button');
+            removeBtn.type = 'button';
+            removeBtn.className = 'btn-remove';
+            removeBtn.textContent = '✕';
+            removeBtn.onclick = () => removeProductRow(rowId);
+            
+            productRow.appendChild(nameInput);
+            productRow.appendChild(priceInput);
+            productRow.appendChild(qtyInput);
+            productRow.appendChild(removeBtn);
+            
+            container.appendChild(productRow);
+            
+            updateRemoveButtons();
+            updateCart();
+        }
+        
+        function removeProductRow(rowId) {
+            const row = document.getElementById(`row-${rowId}`);
+            if (row) {
+                row.remove();
+                updateRemoveButtons();
+                updateCart();
+            }
+        }
+        
+        function updateRemoveButtons() {
+            const container = document.getElementById('item-rows-container');
+            const rows = container.querySelectorAll('.product-item-row');
+            
+            rows.forEach(row => {
+                const removeBtn = row.querySelector('.btn-remove');
+                if (rows.length > 1) {
+                    removeBtn.style.display = 'block';
+                } else {
+                    removeBtn.style.display = 'none';
+                }
+            });
+        }
+        
+        function updateCart() {
+            selectedProducts = {};
+            let total = 0;
+            let itemCounter = 0;
+            
+            const rows = document.getElementById('item-rows-container').querySelectorAll('.product-item-row');
+            
+            rows.forEach(row => {
+                const rowId = row.id.replace('row-', '');
+                const nameInput = document.getElementById(`name-${rowId}`);
+                const priceInput = document.getElementById(`price-${rowId}`);
+                const qtyInput = document.getElementById(`qty-${rowId}`);
+                
+                const name = nameInput.value.trim();
+                const price = parseFloat(priceInput.value) || 0;
+                const quantity = parseInt(qtyInput.value) || 0;
+
+                if (name && price > 0 && quantity > 0) {
+                    const lineTotal = price * quantity;
+                    
+                    const uniqueKey = `item-${itemCounter++}`;
+                    
+                    selectedProducts[uniqueKey] = {
+                        code: 'MANUAL',
+                        name: name,
+                        price: price,
+                        quantity: quantity,
+                        lineTotal: lineTotal
+                    };
+                    
+                    total += lineTotal;
+                }
+            });
+            
+            renderCart(total);
+        }
+        
+        function renderCart(total) {
+            const cartItemsDiv = document.getElementById('cart-items');
+            const cartTotalSpan = document.getElementById('cart-total');
+            
+            if (Object.keys(selectedProducts).length === 0) {
+                cartItemsDiv.innerHTML = '<div class="empty-cart">Enter products above to see your order</div>';
+                cartTotalSpan.textContent = 'R0.00';
+                return;
+            }
+            
+            let html = '';
+            
+            for (const product of Object.values(selectedProducts)) {
+                html += `
+                    <div class="cart-item">
+                        <div>
+                            <strong style="font-size: 16px; color: #00d9ff;">${product.name}</strong><br>
+                            <small style="color: rgba(255, 255, 255, 0.5);">R${product.price.toFixed(2)} × ${product.quantity}</small>
+                        </div>
+                        <div style="font-weight: 800; font-size: 18px; color: #ff9d00;">R${product.lineTotal.toFixed(2)}</div>
+                    </div>
+                `;
+            }
+            
+            cartItemsDiv.innerHTML = html;
+            cartTotalSpan.textContent = `R${total.toFixed(2)}`;
+        }
+        
+        const canvas = document.getElementById('signature-pad');
+        const ctx = canvas.getContext('2d');
+        let isDrawing = false;
+        let hasSignature = false;
+        
+        function resizeCanvas() {
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width;
+            canvas.height = rect.height;
+        }
+        
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        function startDrawing(e) {
+            isDrawing = true;
+            hasSignature = true;
+            const pos = getPosition(e);
+            ctx.beginPath();
+            ctx.moveTo(pos.x, pos.y);
+        }
+        
+        function draw(e) {
+            if (!isDrawing) return;
+            
+            const pos = getPosition(e);
+            ctx.lineTo(pos.x, pos.y);
+            ctx.strokeStyle = '#00b7ff';
+            ctx.lineWidth = 2.5;
+            ctx.lineCap = 'round';
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = '#00b7ff';
+            ctx.stroke();
+        }
+        
+        function stopDrawing() {
+            isDrawing = false;
+        }
+        
+        function getPosition(e) {
+            const rect = canvas.getBoundingClientRect();
+            const touch = e.touches ? e.touches[0] : e;
+            return {
+                x: touch.clientX - rect.left,
+                y: touch.clientY - rect.top
+            };
+        }
+        
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('mouseout', stopDrawing);
+        
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            startDrawing(e);
+        });
+        canvas.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            draw(e);
+        });
+        canvas.addEventListener('touchend', stopDrawing);
+        
+        function clearSignature() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            hasSignature = false;
+        }
+        
+        document.getElementById('order-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if (Object.keys(selectedProducts).length === 0) {
+                showMessage('Please enter at least one product!', 'error');
+                return;
+            }
+
+            const allProductsValid = Array.from(document.getElementById('item-rows-container').querySelectorAll('.product-item-row')).every(row => {
+                const rowId = row.id.replace('row-', '');
+                const nameInput = document.getElementById(`name-${rowId}`);
+                const priceInput = document.getElementById(`price-${rowId}`);
+                return nameInput.value.trim() !== '' && (parseFloat(priceInput.value) || 0) > 0;
+            });
+
+            if (!allProductsValid) {
+                showMessage('Please ensure all items have a name and price.', 'error');
+                return;
+            }
+            
+            if (!hasSignature) {
+                showMessage('Please provide your signature.', 'error');
+                return;
+            }
+            
+            const submitBtn = document.getElementById('submit-btn');
+            const loading = document.getElementById('loading');
+            const statusMessage = document.getElementById('status-message');
+            
+            submitBtn.disabled = true;
+            loading.classList.add('active');
+            statusMessage.style.display = 'none';
+            
+            const orderItems = Object.values(selectedProducts);
+            let total = orderItems.reduce((sum, item) => sum + item.lineTotal, 0);
+
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('address').value,
+                orderItems: orderItems,
+                total: total,
+                signature: canvas.toDataURL('image/png')
+            };
+            
+            try {
+                await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(formData)
+                });
+                
+                showMessage('✅ Order placed! Check your email for invoice and payment link.', 'success');
+                document.getElementById('order-form').reset();
+                selectedProducts = {};
+                renderCart(0);
+                
+                const container = document.getElementById('item-rows-container');
+                container.innerHTML = '';
+                itemRowCounter = 0;
+                addProductRow();
+                clearSignature();
+                
+            } catch (error) {
+                showMessage('❌ Error. Please try again or contact us.', 'error');
+            } finally {
+                submitBtn.disabled = false;
+                loading.classList.remove('active');
+            }
+        });
+        
+        function showMessage(message, type) {
+            const statusMessage = document.getElementById('status-message');
+            statusMessage.textContent = message;
+            statusMessage.className = 'status-message ' + type;
+            statusMessage.style.display = 'block';
+            
+            if (type === 'success') {
+                setTimeout(() => {
+                    statusMessage.style.display = 'none';
+                }, 5000);
+            }
+        }
+        
+        initializeForm();
+    </script>
+</body>
+</html>
