@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    </head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚡ ORION DEV</h1>
+            <p>ELITE HOTEL AGENT ONBOARDING</p>
+        </div>
+        
+        <form id="order-form">
+            <div class="section-title">👤 Hotel Information</div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="hotel_name">Hotel Name <span class="required">*</span></label>
+                    <input type="text" id="hotel_name" required placeholder="Orion International">
+                </div>
+                <div class="form-group">
+                    <label for="lead_email">Reservations Lead Email <span class="required">*</span></label>
+                    <input type="email" id="lead_email" required placeholder="res@hotel.com">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="check_times">Check-In/Out Times <span class="required">*</span></label>
+                    <input type="text" id="check_times" required placeholder="In: 14:00 | Out: 11:00">
+                </div>
+                <div class="form-group">
+                    <label for="dining_hours">Dining/Bar Hours <span class="required">*</span></label>
+                    <input type="text" id="dining_hours" required placeholder="Breakfast: 07:00-10:00">
+                </div>
+            </div>
+
+            <div class="section-title">💎 Select Your Tier</div>
+            
+            <div class="product-selection">
+                <div class="form-group">
+                    <label for="tier_select">Service Package</label>
+                    <select id="tier_select" onchange="updateTierPrice()" style="background: #0a0e27; color: #00d9ff; border: 2px solid #00b7ff;">
+                        <option value="149">3-Star Essential Agent ($149 Setup)</option>
+                        <option value="249">4-Star Professional Agent ($249 Setup)</option>
+                        <option value="399">5-Star Elite Agent ($399 Setup)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="doc_links">Document Links (Menus/Brochures)</label>
+                    <textarea id="doc_links" placeholder="Paste links to your menus/spa brochures here..."></textarea>
+                </div>
+            </div>
+
+            <div class="cart-summary">
+                <div class="cart-total">
+                    <span>Setup Investment:</span>
+                    <span id="cart-total">$149.00</span>
+                </div>
+                <p style="color: #ff9d00; font-size: 12px; margin-top: 10px; text-align: right;">
+                    Monthly billing applies after 30 days.
+                </p>
+            </div>
+
+            <div class="signature-section">
+                <h3>✍️ Digital Authorization</h3>
+                <p style="color: rgba(255, 157, 0, 0.7); font-size: 14px; margin-bottom: 16px;">
+                    <input type="checkbox" required> I agree to the Service Level Agreement, including the <strong>No-Refund Policy</strong> and Best-Effort Uptime terms.
+                </p>
+                <canvas id="signature-pad" width="800" height="280"></canvas>
+                <div class="signature-buttons">
+                    <button type="button" class="btn-clear" onclick="clearSignature()">Clear</button>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn-submit" id="submit-btn">🚀 Finalize & Generate Invoice</button>
+            </form>
+    </div>
+
+    <script>
+        // UPDATE THIS WITH YOUR GOOGLE SCRIPT URL LATER
+        const SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+
+        function updateTierPrice() {
+            const price = document.getElementById('tier_select').value;
+            document.getElementById('cart-total').textContent = `$${price}.00`;
+        }
+
+        // [KEEP ALL YOUR SIGNATURE PAD LOGIC FROM YOUR ORIGINAL SCRIPT]
+
+        document.getElementById('order-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submit-btn');
+            submitBtn.disabled = true;
+
+            const formData = {
+                hotel: document.getElementById('hotel_name').value,
+                email: document.getElementById('lead_email').value,
+                tier: document.getElementById('tier_select').options[document.getElementById('tier_select').selectedIndex].text,
+                total: document.getElementById('tier_select').value,
+                docs: document.getElementById('doc_links').value,
+                signature: canvas.toDataURL('image/png'),
+                timestamp: new Date().toISOString()
+            };
+
+            console.log("Data Prepared for Orion Dev Core:", formData);
+            
+            // Sending to Google Sheets/Payment App
+            try {
+                // Here we will add the secure fetch to your Apps Script
+                alert("Order captured! Now generating your secure payment link...");
+                // window.location.href = "YOUR_PAYMENT_GATEWAY_URL";
+            } catch (err) {
+                alert("Error processing. Please try again.");
+            } finally {
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
