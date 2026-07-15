@@ -737,36 +737,36 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>⚡ ORION DEV</h1>
-            <p>Automatic Payments & Streamlined Operations</p>
+            <h1>ORION 269</h1>
+            <p>INSTANT PAYMENT LINKS & INVOICING</p>
         </div>
         
         <form id="order-form">
-            <div class="section-title">👤 Customer Details</div>
+            <div class="section-title">Customer Details</div>
             
             <div class="form-row">
                 <div class="form-group">
                     <label for="name">Full Name <span class="required">*</span></label>
-                    <input type="text" id="name" name="name" required placeholder="Jane Doe">
+                    <input type="text" id="name" name="name" required placeholder="CUSTOMER NAME">
                 </div>
                 
                 <div class="form-group">
                     <label for="phone">Phone Number <span class="required">*</span></label>
-                    <input type="tel" id="phone" name="phone" required placeholder="+27 XX XXX XXXX">
+                    <input type="tel" id="phone" name="phone" required placeholder="+27 ">
                 </div>
             </div>
             
             <div class="form-group">
                 <label for="email">Email Address <span class="required">*</span></label>
-                <input type="email" id="email" name="email" required placeholder="jane@example.com">
+                <input type="email" id="email" name="email" required placeholder="orion@example.com">
             </div>
             
             <div class="form-group">
                 <label for="address">Delivery Address <span class="required">*</span></label>
-                <textarea id="address" name="address" required placeholder="123 Main Street, Suburb, City, Postal Code"></textarea>
+                <textarea id="address" name="address" required placeholder="Address"></textarea>
             </div>
             
-            <div class="section-title">🛍️ Enter Order Items</div>
+            <div class="section-title">️ Enter Order Items</div>
             
             <div id="product-selection" class="product-selection">
                 <div class="product-header">
@@ -779,11 +779,11 @@
                 <div id="item-rows-container"></div>
                 
                 <button type="button" class="btn-add-more" onclick="addProductRow()">
-                    ➕ Add Another Item
+                    Add Another Item
                 </button>
             </div>
             
-            <div class="section-title">🛒 Order Summary</div>
+            <div class="section-title"> Order Summary</div>
             
             <div class="cart-summary">
                 <div id="cart-items" class="cart-items">
@@ -796,7 +796,7 @@
             </div>
             
             <div class="signature-section">
-                <h3>✍️ Your Signature</h3>
+                <h3>Your Signature</h3>
                 <p style="color: rgba(255, 157, 0, 0.7); font-size: 14px; margin-bottom: 16px; font-weight: 500;">By signing below, you confirm this order and agree to our terms.</p>
                 <canvas id="signature-pad" width="800" height="280"></canvas>
                 <div class="signature-buttons">
@@ -804,7 +804,7 @@
                 </div>
             </div>
             
-            <button type="submit" class="btn-submit" id="submit-btn">🚀 Place Order & Pay Now</button>
+            <button type="submit" class="btn-submit" id="submit-btn"> Place Order & Pay Now</button>
             
             <div class="loading" id="loading">
                 <div class="spinner"></div>
@@ -1090,7 +1090,7 @@
                     body: JSON.stringify(formData)
                 });
                 
-                showMessage('✅ Order placed! Check your email for invoice and payment link.', 'success');
+                showMessage('Order placed! Check your email for invoice and payment link.', 'success');
                 document.getElementById('order-form').reset();
                 selectedProducts = {};
                 renderCart(0);
@@ -1102,7 +1102,7 @@
                 clearSignature();
                 
             } catch (error) {
-                showMessage('❌ Error. Please try again or contact us.', 'error');
+                showMessage('Error. Please try again or contact us.', 'error');
             } finally {
                 submitBtn.disabled = false;
                 loading.classList.remove('active');
